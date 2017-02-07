@@ -11,29 +11,29 @@ class LoginComponent extends React.Component {
 
   render() {
     return <div id="iam-login-form-wrapper">
-      <div class="login-logo-wrapper">
-        <div class="login-logo-box">
-          <div class="login-logo"></div>
+      <div className="login-logo-wrapper">
+        <div className="login-logo-box">
+          <div className="login-logo"></div>
         </div>
       </div>
 
       <div className="login-input-wrapper">
-        <div class="login-input-box">
-          <div class="login-input-username">
-            <label for="identifier">Identifier</label>
-            <div class="">
+        <div className="login-input-box">
+          <div className="login-input-username">
+            <label htmlFor="identifier">Identifier</label>
+            <div className="">
               <input id="identifier" name="identifier" type="text"/>
             </div>
           </div>
-          <div class="login-input-password">
-            <label for="password">Password</label>
-            <div class="">
+          <div className="login-input-password">
+            <label htmlFor="password">Password</label>
+            <div className="">
               <input id="password" name="password" type="password"/>
             </div>
           </div>
-          <div class="login-input-button-wrapper">
-            <div class="login-input-button-box">
-              <div class="login-input-button">
+          <div className="login-input-button-wrapper">
+            <div className="login-input-button-box">
+              <div className="login-input-button">
                 <button id="iam-login-button">Sign in</button>
               </div>
             </div>

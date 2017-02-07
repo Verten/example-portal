@@ -1,27 +1,15 @@
-var gulp = require('gulp');
-var webpack = require('webpack');
-var webpackConfig = require('./webpack.config.js');
-var webpackCompiler = webpack(webpackConfig);
-var Server = require('karma').Server;
+const gulp = require('gulp');
+const HubRegistry = require('gulp-hub');
 
+const conf = require('./conf/gulp.conf');
 
-gulp.task('default', function () {
-  // place code for your default task here
-});
+// Load some files into the registry
+const hub = new HubRegistry([conf.path.tasks('*.js')]);
 
-gulp.task("build-js", function (callback) {
-  webpackCompiler.run(function (err, stats) {
-    if (err) {
-      console.log("[webpack:build-js]: stats:" + stats + ", err:" + err);
-    }
+// Tell gulp to use the tasks just loaded
+gulp.registry(hub);
 
-    callback();
-  });
-});
-
-gulp.task('test:unit', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, done).start();
-});
+gulp.task('build', gulp.series(gulp.parallel('other', 'webpack:dist')));
+gulp.task('test', gulp.series('karma:single-run'));
+gulp.task('dev', gulp.series('webpack:dev','browsersync'));
+gulp.task('default', gulp.series('clean', 'build'));
