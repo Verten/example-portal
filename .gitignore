@@ -1,0 +1,19 @@
+# Idea intelliJ generated files
+**/.idea/
+**/*.iml
+
+# Maven generated files
+**/target/
+
+# Eclipse generated files
+**/*.classpath
+**/*.project
+
+# Front end releated
+front-end/node_modules/
+front-end/node/
+front-end/coverage/
+
+# Log releated
+**/*.log
+
