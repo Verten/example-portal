@@ -5,6 +5,7 @@ process.env.NODE_ENV = 'test';
 
 const path = require('path');
 const gulp = require('gulp');
+const nightwatch = require('gulp-nightwatch');
 const karma = require('karma');
 
 gulp.task('test:unit', function (done) {
@@ -15,6 +16,13 @@ gulp.task('test:unit', function (done) {
 });
 
 gulp.task('karma:single-run', karmaSingleRun);
+gulp.task('karma:e2e', function () {
+  return gulp.src('test/e2e/specs/**/*.spec.js')
+    .pipe(nightwatch({
+      configFile: 'conf/nightwatch.config.js',
+      cliArgs: ['--env chrome']
+    }));
+});
 
 function karmaFinishHandler(done) {
   return failCount => {
@@ -24,6 +32,6 @@ function karmaFinishHandler(done) {
 
 function karmaSingleRun(done) {
   const configFile = path.join(process.cwd(), 'conf', 'karma.conf.js');
-  const karmaServer = new karma.Server({configFile}, karmaFinishHandler(done));
+  const karmaServer = new karma.Server({ configFile }, karmaFinishHandler(done));
   karmaServer.start();
 }

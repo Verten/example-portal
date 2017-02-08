@@ -11,5 +11,6 @@ gulp.registry(hub);
 
 gulp.task('build', gulp.series(gulp.parallel('other', 'webpack:dist')));
 gulp.task('test', gulp.series('karma:single-run'));
+gulp.task('test:e2e', gulp.series('webpack:dev','browsersync','karma:e2e'));
 gulp.task('dev', gulp.series('webpack:dev','browsersync'));
 gulp.task('default', gulp.series('clean', 'build'));

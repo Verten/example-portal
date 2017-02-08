@@ -17,8 +17,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/**/*.js',
-      'test/**/*.test.js'
+      //'src/**/*.js',
+      'test/ut/**/*.spec.js'
     ],
 
 
@@ -76,7 +76,7 @@ module.exports = function(config) {
 
     coverageReporter: {
       reporters: [
-        {type: 'html', dir: 'coverage/'},
+        {type: 'html', dir: '../coverage/'},
         {type: 'text-summary'}
       ]
     }
