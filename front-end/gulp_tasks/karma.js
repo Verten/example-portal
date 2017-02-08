@@ -16,6 +16,7 @@ gulp.task('test:unit', function (done) {
 });
 
 gulp.task('karma:single-run', karmaSingleRun);
+
 gulp.task('karma:e2e', function () {
   return gulp.src('test/e2e/specs/**/*.spec.js')
     .pipe(nightwatch({

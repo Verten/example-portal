@@ -1,13 +1,9 @@
 const webpack = require('webpack');
 module.exports = {
-  debug: true,
   devtool: 'source-map',
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      options: {},
-      debug: true
-    })
-  ],
+  resolve: {
+    extensions: ['.jsx', '.js', '.json', '.scss'],
+  },
   module: {
     loaders: [
       {
@@ -23,5 +19,10 @@ module.exports = {
         loaders: 'css?sourceMap!postcss!sass?sourceMap'
       }
     ]
+  },
+  externals: {
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
   }
 };

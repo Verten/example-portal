@@ -12,13 +12,12 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      //'src/**/*.js',
-      'test/ut/**/*.spec.js'
+      '../test/ut/**/*.spec.js'
     ],
 
 
@@ -33,8 +32,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/**/*.js': ['babel', 'coverage'],
-      'test/**/*.test.js': ['babel']
+      '../src/**/*.jsx': ['webpack', 'coverage'],
+      '../test/ut/**/*.spec.js': ['webpack']
     },
 
 
@@ -79,6 +78,17 @@ module.exports = function(config) {
         {type: 'html', dir: '../coverage/'},
         {type: 'text-summary'}
       ]
-    }
+    },
+    webpackServer: {
+      noInfo: true //please don't spam the console when running in karma!
+    },
+    plugins: [
+      'karma-mocha',
+      'karma-mocha-reporter',
+      'karma-coverage',
+      'karma-webpack',
+      'karma-sourcemap-loader',
+      'karma-chrome-launcher',
+    ],
   })
 }

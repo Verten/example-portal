@@ -1,6 +1,5 @@
 import React from "react"
 import ReactDOM from "react-dom"
-// import Hello from "./hello.jsx"
 import LoginComponent from "./components/LoginComponent.jsx"
 
 class App extends React.Component {
