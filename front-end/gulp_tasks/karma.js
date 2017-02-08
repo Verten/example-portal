@@ -8,19 +8,12 @@ const gulp = require('gulp');
 const nightwatch = require('gulp-nightwatch');
 const karma = require('karma');
 
-gulp.task('test:unit', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, done).start();
-});
-
 gulp.task('karma:single-run', karmaSingleRun);
 
 gulp.task('karma:e2e', function () {
   return gulp.src('test/e2e/specs/**/*.spec.js')
     .pipe(nightwatch({
-      configFile: 'conf/nightwatch.config.js',
+      configFile: 'build/nightwatch.config.js',
       cliArgs: ['--env chrome']
     }));
 });

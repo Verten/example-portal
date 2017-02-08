@@ -16,7 +16,15 @@ module.exports = {
       },
       {
         test: /(\.css|\.scss)$/,
-        loaders: 'css?sourceMap!postcss!sass?sourceMap'
+        loaders: 'css-loader?sourceMap!postcss-loader!sass-loader'
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&minetype=image/svg+xml',
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&minetype=application/octet-stream',
       }
     ]
   },

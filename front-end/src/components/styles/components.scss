@@ -1,0 +1,143 @@
+$body-color: rgb(238, 238, 238);
+@font-face {
+  font-family: EricssonCapitalTT;
+  src: url('EricssonCapitalTT.ttf') format('truetype');
+}
+
+body {
+  background-color: $body-color;
+  font-family: 'Arial', serif;
+  margin: 0;
+  padding: 8px;
+}
+
+body, html, #root {
+  height: 100%;
+}
+
+#app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 500px;
+  height: 450px;
+  padding: 20px;
+  background-color: #E9E9E9;
+  min-height: 350px;
+  box-shadow: #999 0 1px 3px;
+  border-radius: 10px;
+}
+
+#iam-login-form-wrapper {
+  position: relative;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  .login-logo {
+    background: url(ericssonLogo_blue.svg) 30px 40px no-repeat;
+    height: 100px;
+    width: 100%;
+  }
+  .login-input-wrapper {
+    position: relative;
+    margin: 60px 50px 0 50px;
+    height: 220px;
+    label {
+      display: none;
+    }
+    .login-input-box:before {
+      content: "IAM PORTAL";
+      display: block;
+      height: auto;
+      width: 100%;
+      vertical-align: middle;
+      font-family: EricssonCapitalTT, Arial, sans-serif;
+      font-weight: normal;
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      line-height: 2.6rem;
+      color: #333;
+      margin-bottom: 20px;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-image: -webkit-linear-gradient(left, #a2c517 10%, #009046 30%, #0082b6 50%, #151f77 70%, #db0050 100%);
+      background-image: -webkit-gradient(linear, left top, right top, color-stop(0.1, #a2c517), color-stop(0.3, #009046), color-stop(0.5, #0082b6), color-stop(0.7, #151f77), color-stop(1, #db0050));
+      background-image: linear-gradient(to right, #a2c517 10%, #009046 30%, #0082b6 50%, #151f77 70%, #db0050 100%);
+    }
+    .login-input-box {
+      .login-input-username, .login-input-password, .login-input-button-wrapper {
+        display: inline-block;
+      }
+      .login-input-username, .login-input-password {
+        margin: 0 0.8rem 0 0;
+      }
+      input {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: left;
+        font-size: 0.85rem;
+        width: 160px;
+        height: 1.65rem;
+        padding: 0.4rem 0.6rem;
+        border: 1px solid #b3b3b3;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        border-radius: 3px;
+        box-shadow: inset 1px 1px 0 0 #cccccc;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+      }
+      button {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        color: #ffffff;
+        border: none;
+        width: 30px;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 8px;
+        line-height: 1.9rem;
+        height: 1.65rem;
+        font-size: 0.85rem;
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+        span{
+          display: none;
+        }
+      }
+      button:after {
+        position: absolute;
+        content: "";
+        display: block;
+        top:0;
+        left:0;
+        background: transparent url(ArrowRightSmall_black_16px.svg) no-repeat center;
+        background-size: 60%;
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+  .login-footer-wrapper {
+    position: absolute;
+    bottom: 0;
+    padding-left: 20px;
+    color: #D2D2D2;
+    p {
+      line-height: 0.7rem;
+      font-size: 0.7rem;
+    }
+  }
+}

@@ -7,6 +7,9 @@ const FailPlugin = require('webpack-fail-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
+  resolve: {
+    extensions: ['.jsx', '.js', '.json', '.scss'],
+  },
   module: {
     loaders: [
       {
@@ -14,8 +17,8 @@ module.exports = {
         loaders: [
           'style-loader',
           'css-loader',
-          'sass-loader',
-          'postcss-loader'
+          'postcss-loader',
+          'sass-loader'
         ]
       },
       {
@@ -25,6 +28,14 @@ module.exports = {
           'react-hot-loader',
           'babel-loader'
         ]
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&minetype=image/svg+xml'
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&minetype=application/octet-stream'
       }
     ]
   },

@@ -5,18 +5,17 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FailPlugin = require('webpack-fail-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const pkg = require('../package.json');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
+  resolve: {
+    extensions: ['.jsx', '.js', '.json', '.scss'],
+  },
   module: {
     loaders: [
       {
         test: /\.(css|scss)$/,
-        loaders: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader?minimize!sass-loader!postcss-loader'
-        })
+        loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'sass-loader']),
       },
       {
         test: /\.jsx?$/,
@@ -24,6 +23,14 @@ module.exports = {
         loaders: [
           'babel-loader'
         ]
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&minetype=image/svg+xml',
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&minetype=application/octet-stream',
       }
     ]
   },
@@ -38,10 +45,13 @@ module.exports = {
       'process.env.NODE_ENV': '"production"'
     }),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {unused: true, dead_code: true, warnings: false} // eslint-disable-line camelcase
+      compress: { unused: true, dead_code: true, warnings: false } // eslint-disable-line camelcase
     }),
-    new ExtractTextPlugin('index-[contenthash].css'),
-    new webpack.optimize.CommonsChunkPlugin({name: 'vendor'}),
+    new ExtractTextPlugin('index-[contenthash].css', {
+      disable: false,
+      allChunks: true,
+    }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: () => [autoprefixer]

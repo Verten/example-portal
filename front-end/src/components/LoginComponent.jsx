@@ -4,6 +4,8 @@
 
 import React from "react"
 
+import style from './styles/components.scss'
+
 class LoginComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -35,11 +37,19 @@ class LoginComponent extends React.Component {
             <div className="login-input-button-wrapper">
               <div className="login-input-button-box">
                 <div className="login-input-button">
-                  <button id="iam-login-button">Sign in</button>
+                  <button id="iam-login-button">
+                    <span>
+                      Sign in
+                    </span>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="login-footer-wrapper">
+          <p>© Ericsson Enterprise AB, 2017. All rights reserved.</p>
         </div>
       </div>
     )
