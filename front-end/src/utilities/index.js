@@ -2,7 +2,7 @@
  * Created by ebinhon on 2/9/2017.
  */
 'use strict';
-import fetch from 'isomorphic-fetch'
+import 'isomorphic-fetch'
 import jwtDecode from 'jwt-decode'
 import {ID_TOKEN} from '../constants/TokenTypes'
 
