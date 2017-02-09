@@ -4,3 +4,144 @@
   font-family: EricssonCapitalTT;
   src: url('EricssonCapitalTT.ttf') format('truetype');
 }
+
+#app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 45px;
+  width: 100%;
+}
+
+#iam-login-form-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  font-size: 0;
+  top: -4px;
+  left: 0;
+  background: #0066b3;
+  background: -o-linear-gradient(left, #a2c517 10%, #009046 30%, #0082b6 50%, #151f77 70%, #db0050 100%);
+  background: -moz-linear-gradient(left, #a2c517 10%, #009046 30%, #0082b6 50%, #151f77 70%, #db0050 100%);
+  background: -webkit-linear-gradient(left, #a2c517 10%, #009046 30%, #0082b6 50%, #151f77 70%, #db0050 100%);
+  background: -ms-linear-gradient(left, #a2c517 10%, #009046 30%, #0082b6 50%, #151f77 70%, #db0050 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0.1, #a2c517), color-stop(0.3, #009046), color-stop(0.5, #0082b6), color-stop(0.7, #151f77), color-stop(1, #db0050));
+  background: linear-gradient(to right, #a2c517 10%, #009046 30%, #0082b6 50%, #151f77 70%, #db0050 100%);
+}
+
+#iam-login-form-wrapper {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  z-index: 1500;
+  border-top: 4px solid #0066b3;
+  background: #f0f0f0;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(1, #f0f0f0));
+  background: -ms-linear-gradient(top, #ffffff, #f0f0f0);
+  -webkit-box-shadow: 0 2px 2px #D2D2D2;
+  -moz-box-shadow: 0 2px 2px #D2D2D2;
+  box-shadow: 0 2px 2px #D2D2D2;
+  .login-logo {
+    background: url(ericssonLogo_blue.svg) 0 6px no-repeat;
+    background-size: 125%;
+    height: 40px;
+    width: 40px;
+  }
+  .login-input-wrapper {
+    width: 100%;
+    &:before {
+      content: "IAM PORTAL";
+      display: inline;
+      height: auto;
+      width: 100%;
+      vertical-align: middle;
+      font-family: EricssonCapitalTT, Arial, sans-serif;
+      font-weight: normal;
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      line-height: 2.6rem;
+      color: #333;
+      margin-bottom: 20px;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-image: -webkit-linear-gradient(left, #a2c517 10%, #009046 30%, #0082b6 50%, #151f77 70%, #db0050 100%);
+      background-image: -webkit-gradient(linear, left top, right top, color-stop(0.1, #a2c517), color-stop(0.3, #009046), color-stop(0.5, #0082b6), color-stop(0.7, #151f77), color-stop(1, #db0050));
+      background-image: linear-gradient(to right, #a2c517 10%, #009046 30%, #0082b6 50%, #151f77 70%, #db0050 100%);
+    }
+    margin-left: 16px;
+    label {
+      display: none;
+    }
+    .login-input-box {
+      float: right;
+      margin: 8px;
+      .login-input-username, .login-input-password, .login-input-button-wrapper {
+        display: inline-block;
+      }
+      .login-input-username, .login-input-password {
+        margin: 0 0.8rem 0 0;
+      }
+      input {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: left;
+        font-size: 0.85rem;
+        width: 160px;
+        height: 1.65rem;
+        padding: 0.4rem 0.6rem;
+        border: 1px solid #b3b3b3;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        border-radius: 3px;
+        box-shadow: inset 1px 1px 0 0 #cccccc;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+      }
+      button {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        color: #ffffff;
+        border: none;
+        width: 30px;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 8px;
+        line-height: 1.9rem;
+        height: 1.65rem;
+        font-size: 0.85rem;
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+        span {
+          display: none;
+        }
+      }
+      button:after {
+        position: absolute;
+        content: "";
+        display: block;
+        top: -1px;
+        left: 0;
+        background: transparent url(ArrowRightSmall_black_16px.svg) no-repeat center;
+        background-size: 60%;
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+  .login-footer-wrapper {
+    display: none;
+  }
+}

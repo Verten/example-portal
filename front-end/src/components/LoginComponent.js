@@ -4,7 +4,9 @@
 
 import React from 'react'
 
-import style from './styles/components.scss'
+import style from './styles/components_1.scss'
+// import style from './styles/components.scss'
+
 
 class LoginComponent extends React.Component {
   constructor(props) {
