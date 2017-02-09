@@ -9,7 +9,7 @@ import { expect } from 'chai'
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-describe('user actions', () => {
+describe('User Actions', () => {
   afterEach(() => {
     fetchMock.reset()
     fetchMock.restore()

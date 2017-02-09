@@ -14,7 +14,7 @@ const initialState = Immutable.fromJS({
   error: null
 })
 
-describe('user reducer', () => {
+describe('User Reducer', () => {
   it('should return initial state', () => {
     expect(
       userReducer(undefined, {})
