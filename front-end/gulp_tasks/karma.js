@@ -25,7 +25,7 @@ function karmaFinishHandler(done) {
 }
 
 function karmaSingleRun(done) {
-  const configFile = path.join(process.cwd(), 'conf', 'karma.conf.js');
+  const configFile = path.join(process.cwd(), 'build', 'karma.conf.js');
   const karmaServer = new karma.Server({ configFile }, karmaFinishHandler(done));
   karmaServer.start();
 }

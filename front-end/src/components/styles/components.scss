@@ -1,18 +1,8 @@
-$body-color: rgb(238, 238, 238);
+@import url(../../common.scss);
+
 @font-face {
   font-family: EricssonCapitalTT;
   src: url('EricssonCapitalTT.ttf') format('truetype');
-}
-
-body {
-  background-color: $body-color;
-  font-family: 'Arial', serif;
-  margin: 0;
-  padding: 8px;
-}
-
-body, html, #root {
-  height: 100%;
 }
 
 #app {
@@ -113,7 +103,7 @@ body, html, #root {
         white-space: nowrap;
         overflow: hidden;
         background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 100%);
-        span{
+        span {
           display: none;
         }
       }
@@ -121,8 +111,8 @@ body, html, #root {
         position: absolute;
         content: "";
         display: block;
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
         background: transparent url(ArrowRightSmall_black_16px.svg) no-repeat center;
         background-size: 60%;
         height: 30px;

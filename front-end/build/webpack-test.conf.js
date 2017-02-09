@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 module.exports = {
   devtool: 'source-map',
   resolve: {
@@ -16,7 +17,7 @@ module.exports = {
       },
       {
         test: /(\.css|\.scss)$/,
-        loaders: 'css-loader?sourceMap!postcss-loader!sass-loader'
+        loaders: 'css-loader!postcss-loader!sass-loader'
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
@@ -32,5 +33,12 @@ module.exports = {
     'react/addons': true,
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true
-  }
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: () => [autoprefixer]
+      }
+    })
+  ],
 };

@@ -63,6 +63,6 @@ module.exports = {
     filename: '[name]-[hash].js'
   },
   entry: {
-    app: `./${conf.path.src('app.jsx')}`
+    app: `./${conf.path.src('index')}`
   }
 };

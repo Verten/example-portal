@@ -10,6 +10,6 @@ describe('<LoginComponent />', () => {
   it('should render itself', () => {
     const enzymeWrapper = shallow(<LoginComponent />)
     const actual = enzymeWrapper.find('#iam-login-form-wrapper').children()
-    expect(actual).to.have.length(2)
+    expect(actual).to.have.length(3) // logo wrapper, input wrapper, footer wrapper
   })
 })

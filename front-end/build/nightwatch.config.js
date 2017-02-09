@@ -7,7 +7,7 @@ module.exports = {
 
   'selenium': {
     'start_process': true,
-    'server_path': 'test/lib/selenium-server-standalone-3.0.1.jar',
+    'server_path': require('selenium-server-standalone'),
     'host': '127.0.0.1',
     'port': 4444,
     'cli_args': {

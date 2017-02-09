@@ -23,7 +23,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      '**/*.swp'
+      '../src/**/*.scss'
     ],
 
     // conifguration for webpack
@@ -32,7 +32,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '../src/**/*.jsx': ['webpack', 'coverage'],
+      '../src/**/*.js': ['webpack', 'coverage'],
       '../test/ut/**/*.spec.js': ['webpack']
     },
 
