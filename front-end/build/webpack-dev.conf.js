@@ -17,8 +17,8 @@ module.exports = {
         loaders: [
           'style-loader',
           'css-loader',
-          'postcss-loader',
-          'sass-loader'
+          'sass-loader',
+          'postcss-loader'
         ]
       },
       {
@@ -36,7 +36,8 @@ module.exports = {
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader?limit=10000&minetype=application/octet-stream'
-      }
+      },
+      { test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=[name].[ext]' },
     ]
   },
   plugins: [
@@ -57,7 +58,7 @@ module.exports = {
       debug: true
     })
   ],
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   output: {
     path: path.join(process.cwd(), conf.paths.tmp),
     filename: 'index.js'

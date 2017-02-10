@@ -43,6 +43,7 @@ class LoginComponent extends React.Component {
   }
 
   render() {
+    const { error } = this.props
     return (
       <div id='iam-login-form-wrapper'>
         <div className='login-logo-wrapper'>

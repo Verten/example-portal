@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path')
 const autoprefixer = require('autoprefixer');
 module.exports = {
   devtool: 'source-map',
@@ -16,6 +17,11 @@ module.exports = {
         }
       },
       {
+        test: /\.jsx?$/,
+        include: path.resolve('src/'),
+        loader: 'isparta-loader'
+      },
+      {
         test: /(\.css|\.scss)$/,
         loaders: 'css-loader!postcss-loader!sass-loader'
       },
@@ -26,7 +32,8 @@ module.exports = {
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader?limit=10000&minetype=application/octet-stream',
-      }
+      },
+      { test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=[name].[ext]' },
     ]
   },
   externals: {
@@ -38,7 +45,8 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: () => [autoprefixer]
-      }
+      },
+      debug: true
     })
   ],
 };

@@ -23,7 +23,8 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      '../src/**/*.scss'
+      '../src/**/*.scss',
+      '../src/utilities/*.js'
     ],
 
     // conifguration for webpack

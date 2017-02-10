@@ -3,6 +3,7 @@
  */
 import Immutable from 'immutable'
 import { getSession, getUser, getIsAuthenticated } from '../../utilities/auth'
+import { getImmutableValue } from '../../utilities'
 
 const initialState = Immutable.fromJS({
   action: null,
@@ -21,7 +22,7 @@ function userReducer(state = initialState, action) {
       })
     },
     USER_AUTHORIZE: () => {
-      let action = state.get('action') ? state.get('action').toJS() : state.get('action')
+      let action = getImmutableValue(state, 'action') //state.get('action') ? state.get('action').toJS() : state.get('action')
       action = action.payload
       return state.merge({
         action: Immutable.fromJS(action),
@@ -30,7 +31,7 @@ function userReducer(state = initialState, action) {
       })
     },
     USER_AUTHENTICATE: () => {
-      let action = state.get('action') ? state.get('action').toJS() : state.get('action')
+      let action = getImmutableValue(state, 'action') // state.get('action') ? state.get('action').toJS() : state.get('action')
       action = action.payload
       return state.merge({
         action: Immutable.fromJS(action),
@@ -39,7 +40,7 @@ function userReducer(state = initialState, action) {
       })
     },
     USER_ERROR: () => {
-      let error = state.get('error') ? state.get('error').toJS() : state.get('error')
+      let error = getImmutableValue(state, 'error')
       error = action.error
       return state.merge({
         error: Immutable.fromJS(error),

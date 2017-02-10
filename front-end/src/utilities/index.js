@@ -4,7 +4,8 @@
 'use strict';
 import 'isomorphic-fetch'
 import jwtDecode from 'jwt-decode'
-import {ID_TOKEN} from '../constants/TokenTypes'
+import { isPlainObject, isNull } from 'lodash'
+import { ID_TOKEN } from '../constants/TokenTypes'
 
 export function checkStatus(response) {
   if (!response.ok) {   // (response.status < 200 || response.status > 300)
@@ -93,6 +94,18 @@ export function loadUserProfile() {
     }
     return userProfile
   } catch (err) {
+    return null
+  }
+}
+
+export function getImmutableValue(state, variable) {
+  if (!isNull(state.get(variable))) {
+    if(isPlainObject(state.get(variable))){
+      return state.get(variable).toJS()
+    }else{
+      return state.get(variable)
+    }
+  }else{
     return null
   }
 }

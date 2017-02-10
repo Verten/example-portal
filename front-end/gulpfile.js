@@ -9,8 +9,8 @@ const hub = new HubRegistry([conf.path.tasks('*.js')]);
 // Tell gulp to use the tasks just loaded
 gulp.registry(hub);
 
-gulp.task('build', gulp.series(gulp.parallel('other', 'webpack:prod')));
+gulp.task('build', gulp.series(gulp.parallel('webpack:prod'))); // 'other',
 gulp.task('test', gulp.series('karma:single-run'));
-gulp.task('test:e2e', gulp.series('webpack:prod','browsersync:prod','karma:e2e'));
-gulp.task('dev', gulp.series('webpack:dev','browsersync'));
+gulp.task('test:e2e', gulp.series('webpack:prod', 'browsersync:prod', 'karma:e2e'));
+gulp.task('dev', gulp.series('webpack:dev', 'browsersync'));
 gulp.task('default', gulp.series('clean', 'build'));

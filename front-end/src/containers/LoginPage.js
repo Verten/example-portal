@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { isNull } from 'lodash'
 import LoginPanel from '../components/LoginComponent'
 import Actions from '../actions'
 import { debug } from '../utilities/log'
@@ -28,10 +29,10 @@ export class LoginPage extends React.Component {
   }
 
   render() {
-    const { actions } = this.props
+    const { actions, error } = this.props
     return (
       <div id="app">
-        <LoginPanel {...actions}/>
+        <LoginPanel {...actions} error={error}/>
       </div>
     )
   }
