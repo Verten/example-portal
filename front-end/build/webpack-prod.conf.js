@@ -8,7 +8,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  devtool: 'source-map',
   resolve: {
     extensions: ['.jsx', '.js', '.json', '.scss'],
   },
@@ -16,7 +15,10 @@ module.exports = {
     loaders: [
       {
         test: /\.(css|scss)$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?minimize!sass-loader!postcss-loader'),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader!postcss-loader!sass-loader'
+        }),
       },
       {
         test: /\.jsx?$/,
@@ -46,7 +48,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     }),
-    new ExtractTextPlugin('index-[contenthash].css', {
+    new ExtractTextPlugin({
+      filename: 'index.css',
       allChunks: true,
       disable: false
     }),
@@ -54,8 +57,7 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: () => [autoprefixer]
-      },
-      debug: true
+      }
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: { unused: true, dead_code: true, warnings: false } // eslint-disable-line camelcase

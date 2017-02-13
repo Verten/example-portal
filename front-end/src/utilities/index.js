@@ -4,7 +4,8 @@
 'use strict';
 import 'isomorphic-fetch'
 import jwtDecode from 'jwt-decode'
-import { isPlainObject, isNull } from 'lodash'
+import { isPlainObject, isNull, isUndefined } from 'lodash'
+import { getIsAuthenticated, getAccessToken, getRefreshToken } from './auth';
 import { ID_TOKEN } from '../constants/TokenTypes'
 
 export function checkStatus(response) {
@@ -40,7 +41,8 @@ export function callAPI(url, config, request, onRequestSuccess, onRequestFailure
       .then(json => {
         dispatch(onRequestSuccess(json))
       }).catch(error => {
-        console.info(error)
+        console.info(`error with api:${url}`, error)
+        // todo: we should check the respose code, if 401, maybe the access token was expired, we should using refresh token
         const response = error.response;
         if (response === undefined) {
           dispatch(onRequestFailure(error))
@@ -99,13 +101,13 @@ export function loadUserProfile() {
 }
 
 export function getImmutableValue(state, variable) {
-  if (!isNull(state.get(variable))) {
-    if(isPlainObject(state.get(variable))){
+  if (!isNull(state) &&!isUndefined(state) && !isNull(state.get(variable))) {
+    if (isPlainObject(state.get(variable))) {
       return state.get(variable).toJS()
-    }else{
+    } else {
       return state.get(variable)
     }
-  }else{
-    return null
+  } else {
+    return {}
   }
 }

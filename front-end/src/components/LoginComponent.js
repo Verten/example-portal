@@ -5,7 +5,7 @@
 import React from 'react'
 import { debug } from '../utilities/log'
 
-import style from './styles/components_1.scss'
+import './styles/components_1.scss'
 // import style from './styles/components.scss'
 
 

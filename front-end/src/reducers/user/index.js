@@ -2,11 +2,11 @@
  * Created by ebinhon on 1/19/2017.
  */
 import Immutable from 'immutable'
-import { getSession, getUser, getIsAuthenticated } from '../../utilities/auth'
+import { setSession, getSession, getUser, getIsAuthenticated } from '../../utilities/auth'
 import { getImmutableValue } from '../../utilities'
 
 const initialState = Immutable.fromJS({
-  action: null,
+  data: null,
   session: getSession(),
   user: getUser(),
   isAuthenticated: getIsAuthenticated(),
@@ -22,19 +22,21 @@ function userReducer(state = initialState, action) {
       })
     },
     USER_AUTHORIZE: () => {
-      let action = getImmutableValue(state, 'action') //state.get('action') ? state.get('action').toJS() : state.get('action')
-      action = action.payload
+      let data = getImmutableValue(state, 'action') //state.get('action') ? state.get('action').toJS() : state.get('action')
+      data = action.payload
       return state.merge({
-        action: Immutable.fromJS(action),
+        data: Immutable.fromJS(data),
         isProcessing: false,
         error: null
       })
     },
     USER_AUTHENTICATE: () => {
-      let action = getImmutableValue(state, 'action') // state.get('action') ? state.get('action').toJS() : state.get('action')
-      action = action.payload
+      let data = getImmutableValue(state, 'action') // state.get('action') ? state.get('action').toJS() : state.get('action')
+      data = action.payload
+      setSession(action.payload)
       return state.merge({
-        action: Immutable.fromJS(action),
+        data: Immutable.fromJS(data),
+        isAuthenticated: true,
         isProcessing: false,
         error: null
       })

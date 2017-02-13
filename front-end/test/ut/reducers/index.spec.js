@@ -6,7 +6,7 @@ import { expect } from 'chai'
 import Immutable from 'immutable'
 
 const initialState = Immutable.fromJS({
-  action: null,
+  data: null,
   session: getSession(),
   user: getUser(),
   isAuthenticated: getIsAuthenticated(),
@@ -22,7 +22,7 @@ describe('User Reducer', () => {
   })
   it('should handle USER_REQUEST', () => {
     const expectState = Immutable.fromJS({
-      action: null,
+      data: null,
       session: getSession(),
       user: getUser(),
       isAuthenticated: getIsAuthenticated(),
@@ -34,5 +34,25 @@ describe('User Reducer', () => {
         type: USER_REQUEST
       })
     ).to.deep.equal(expectState)
+  })
+  it('should handle USER_AUTHENTICATE', () => {
+    const expectState = Immutable.fromJS({
+      data: Immutable.fromJS({
+        sessionID: 'test'
+      }),
+      session: Immutable.fromJS({
+        sessionID: 'test'
+      }),
+      user: getUser(),
+      isAuthenticated: true,
+      isProcessing: false,
+      error: null
+    })
+    expect(userReducer(undefined, {
+      type: USER_AUTHENTICATE,
+      payload: {
+        sessionID: 'test'
+      }
+    })).to.deep.equal(expectState)
   })
 })
