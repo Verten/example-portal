@@ -3,10 +3,11 @@
  */
 
 import React from 'react'
+import { isNull } from 'lodash'
 import { debug } from '../utilities/log'
 
-import './styles/components_1.scss'
-// import style from './styles/components.scss'
+// import './styles/components_1.scss'
+import './styles/components.scss'
 
 
 class LoginComponent extends React.Component {
@@ -77,6 +78,13 @@ class LoginComponent extends React.Component {
                     </span>
                   </button>
                 </div>
+              </div>
+            </div>
+            <div className='login-message-wrapper'>
+              <div className=''>
+                {
+                  !isNull(error) ? `${error.message}, ${error.status} ${error.statusText}` : ''
+                }
               </div>
             </div>
           </div>

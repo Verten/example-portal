@@ -75,6 +75,14 @@
       .login-input-username, .login-input-password {
         margin: 0 0.8rem 0 0;
       }
+      .login-message-wrapper {
+        & > div {
+          color: #ff0900;
+          font-size: 0.75rem;
+          margin-top: 8px;
+          text-align: right;
+        }
+      }
       input {
         display: inline-block;
         vertical-align: middle;

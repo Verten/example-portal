@@ -9,6 +9,10 @@ module.exports = {
       .assert.title('Demo')
       .assert.count('input', 2)
       .assert.count('button', 1)
+      .setValue('input#identifier','admin')
+      .setValue('input#password','123456')
+      .click('button#iam-login-button')
+      .pause(2000)
       .end();
   }
 };
