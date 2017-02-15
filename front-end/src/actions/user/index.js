@@ -9,28 +9,28 @@ import { USER_ERROR, USER_REQUEST, USER_AUTHORIZE, USER_AUTHENTICATE } from '../
 function _error() {
   return error => ({
     type: USER_ERROR,
-    error
+    error,
   })
 }
 
 // default request action
 function userRequest() {
   return {
-    type: USER_REQUEST
+    type: USER_REQUEST,
   }
 }
 
 function _userAuthorize() {
   return payload => ({
     type: USER_AUTHORIZE,
-    payload
+    payload,
   })
 }
 
 function _userAuthenticate() {
   return payload => ({
     type: USER_AUTHENTICATE,
-    payload
+    payload,
   })
 }
 

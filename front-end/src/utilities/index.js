@@ -1,17 +1,19 @@
 /**
  * Created by ebinhon on 2/9/2017.
  */
-'use strict';
+'use strict'
 import 'isomorphic-fetch'
 import jwtDecode from 'jwt-decode'
 import { isPlainObject, isNull, isUndefined } from 'lodash'
-import { getIsAuthenticated, getAccessToken, getRefreshToken } from './auth';
+import { debug } from './log'
+/* eslint-disable no-unused-vars */
+import { getIsAuthenticated, getAccessToken, getRefreshToken } from './auth'
 import { ID_TOKEN } from '../constants/TokenTypes'
 
 export function checkStatus(response) {
   if (!response.ok) {   // (response.status < 200 || response.status > 300)
-    const error = new Error(response.status, response.statusText);
-    error.response = response;
+    const error = new Error(response.status, response.statusText)
+    error.response = response
     throw error
   }
   return response
@@ -34,24 +36,24 @@ export function parseJSON(response) {
  */
 export function callAPI(url, config, request, onRequestSuccess, onRequestFailure) {
   return dispatch => {
-    dispatch(request);
+    dispatch(request)
     return fetch(url, config)
       .then(checkStatus)
       .then(parseJSON)
       .then(json => {
         dispatch(onRequestSuccess(json))
       }).catch(error => {
-        console.info(`error with api:${url}`, error)
+        debug(`error with api:${url}`, error)
         // todo: we should check the respose code, if 401, maybe the access token was expired, we should using refresh token
-        const response = error.response;
+        const response = error.response
         if (response === undefined) {
           dispatch(onRequestFailure(error))
         } else {
-          error.status = response.status;
-          error.statusText = response.statusText;
+          error.status = response.status
+          error.statusText = response.statusText
           response.text().then(text => {
             try {
-              const json = JSON.parse(text);
+              const json = JSON.parse(text)
               error.message = json.message
             } catch (ex) {
               error.message = text
@@ -85,13 +87,13 @@ export function decodeUserProfile(idToken) {
 
 export function loadUserProfile() {
   try {
-    const idToken = sessionStorage.getItem(ID_TOKEN);
-    const userProfile = jwtDecode(idToken);
-    const now = new Date().getTime() / 1000;   // Date().getTime() returns milliseconds.
+    const idToken = sessionStorage.getItem(ID_TOKEN)
+    const userProfile = jwtDecode(idToken)
+    const now = new Date().getTime() / 1000   // Date().getTime() returns milliseconds.
     // So divide by 1000 to get seconds
     if (now > userProfile.exp) {
       // user profile has expired.
-      removeIdToken();
+      removeIdToken()
       return null
     }
     return userProfile

@@ -1,12 +1,12 @@
 /*eslint no-undef: 0*/
 
-import { get, isString, isUndefined, isEmpty } from 'lodash';
-import { debug } from './log';
+import { get, isString, isUndefined } from 'lodash'
+import { debug } from './log'
 
 const _STORAGE_PREFIX = 'IAM'
 
 if (isUndefined(_STORAGE_PREFIX)) {
-  throw new Error('STORAGE_PREFIX must be set.');
+  throw new Error('STORAGE_PREFIX must be set.')
 }
 
 /**
@@ -14,10 +14,10 @@ if (isUndefined(_STORAGE_PREFIX)) {
  * @param {string} key
  */
 export function getStorageItem(key) {
-  const [root, ...rest] = key.split('.');
-  const item = sessionStorage.getItem(buildStorageKey(root));
-  const value = isJson(item) ? JSON.parse(item) : item;
-  return rest.length ? get(value, rest.join('.')) : value;
+  const [root, ...rest] = key.split('.')
+  const item = sessionStorage.getItem(buildStorageKey(root))
+  const value = isJson(item) ? JSON.parse(item) : item
+  return rest.length ? get(value, rest.join('.')) : value
 }
 
 /**
@@ -27,10 +27,10 @@ export function getStorageItem(key) {
  */
 export function setStorageItem(key, value) {
   if (!isString(value)) {
-    value = JSON.stringify(value);
+    value = JSON.stringify(value)
   }
-  sessionStorage.setItem(buildStorageKey(key), value);
-  debug('storage item set: %s -> %s', key, value);
+  sessionStorage.setItem(buildStorageKey(key), value)
+  debug('storage item set: %s -> %s', key, value)
 }
 
 /**
@@ -38,8 +38,8 @@ export function setStorageItem(key, value) {
  * @param {string} key
  */
 export function removeStorageItem(key) {
-  sessionStorage.removeItem(buildStorageKey(key));
-  debug('storage item removed: %s', key);
+  sessionStorage.removeItem(buildStorageKey(key))
+  debug('storage item removed: %s', key)
 }
 
 /**
@@ -48,7 +48,7 @@ export function removeStorageItem(key) {
  * @returns {string}
  */
 function buildStorageKey(key) {
-  return [_STORAGE_PREFIX, key].join('.');
+  return [_STORAGE_PREFIX, key].join('.')
 }
 
 /**
@@ -58,9 +58,9 @@ function buildStorageKey(key) {
  */
 function isJson(value) {
   try {
-    JSON.parse(value);
+    JSON.parse(value)
   } catch (e) {
-    return false;
+    return false
   }
-  return true;
+  return true
 }

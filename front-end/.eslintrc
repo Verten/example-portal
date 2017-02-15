@@ -28,13 +28,14 @@
     "no-console": 1,
     "no-debugger": 1,
     "no-var": 1,
-    "semi": 0,
+    "semi": [1, "never"],
+    "comma-dangle": [1, "always-multiline"],
     "no-trailing-spaces": 0,
     "eol-last": 0,
     "no-underscore-dangle": 0,
     "no-alert": 0,
     "no-lone-blocks": 0,
-    "jsx-quotes": 1,
+    "jsx-quotes": [1, "prefer-single"],
     "import/default": 1,
     "react/display-name": [ 1, {"ignoreTranspilerName": false }],
     "react/forbid-prop-types": [1, {"forbid": ["any"]}],
@@ -63,10 +64,10 @@
     "react/prefer-es6-class": 1,
     "react/prop-types": 1,
     "react/react-in-jsx-scope": 1,
-    "react/require-extension": 1,
+    "import/extensions": 1,
     "react/self-closing-comp": 1,
     "react/sort-comp": 1,
-    "react/wrap-multilines": 1
+    "react/jsx-wrap-multilines": 1
   },
   "globals": {
   }

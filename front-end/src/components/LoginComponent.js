@@ -12,7 +12,9 @@ import './styles/components.scss'
 
 class LoginComponent extends React.Component {
 
-  static propTypes = {}
+  static propTypes = {
+    userAuthenticate: React.PropTypes.func,
+  }
 
   static defaultProps = {}
 
@@ -21,9 +23,17 @@ class LoginComponent extends React.Component {
     this.state = {
       identifier: '',
       password: '',
+      error: '',
     }
     this.handleSignIn = this.handleSignIn.bind(this)
     this.handleInput = this.handleInput.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { error } = nextProps
+    if (!isNull(error)) {
+      this.handleError(error)
+    }
   }
 
   handleSignIn() {
@@ -34,25 +44,35 @@ class LoginComponent extends React.Component {
   handleInput(e) {
     if (e.target.id === 'identifier') {
       this.setState({
-        identifier: e.target.value
+        identifier: e.target.value,
       })
     } else if (e.target.id === 'password') {
       this.setState({
-        password: e.target.value
+        password: e.target.value,
       })
     }
   }
 
+  handleError(error) {
+    this.setState({
+      error: `${error.message}, ${error.status} ${error.statusText}`,
+    })
+    // after that clean error information
+    setTimeout(() => {
+      this.setState({
+        error: '',
+      })
+    }, 3000)
+  }
+
   render() {
-    const { error } = this.props
     return (
       <div id='iam-login-form-wrapper'>
         <div className='login-logo-wrapper'>
           <div className='login-logo-box'>
-            <div className='login-logo'></div>
+            <div className='login-logo'>&nbsp;</div>
           </div>
         </div>
-
         <div className='login-input-wrapper'>
           <div className='login-input-box'>
             <div className='login-input-username'>
@@ -81,15 +101,12 @@ class LoginComponent extends React.Component {
               </div>
             </div>
             <div className='login-message-wrapper'>
-              <div className=''>
-                {
-                  !isNull(error) ? `${error.message}, ${error.status} ${error.statusText}` : ''
-                }
+              <div ref='messageWrapper' className=''>
+                {this.state.error}
               </div>
             </div>
           </div>
         </div>
-
         <div className='login-footer-wrapper'>
           <p>© Ericsson Enterprise AB, 2017. All rights reserved.</p>
         </div>

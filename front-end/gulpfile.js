@@ -11,6 +11,6 @@ gulp.registry(hub);
 
 gulp.task('build', gulp.series(gulp.parallel('webpack:prod'))); // 'other',
 gulp.task('test', gulp.series('karma:single-run'));
-gulp.task('test:e2e', gulp.series('webpack:prod', 'browsersync:prod', 'karma:e2e'));
-gulp.task('dev', gulp.series('webpack:dev', 'browsersync'));
-gulp.task('default', gulp.series('clean', 'build'));
+gulp.task('test:e2e', gulp.series('webpack:prod', 'browsersync:prod', 'karma:e2e', 'browsersync:stop'));
+gulp.task('dev', gulp.series('webpack:dev', 'browsersync', 'lint:watch'));
+gulp.task('default', gulp.series('clean', 'lint', 'build'));

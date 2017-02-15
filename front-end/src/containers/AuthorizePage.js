@@ -62,13 +62,13 @@ function mapStateToProps(state) {
   const { isAuthenticated, error } = userReducer.toJS()
   return {
     isAuthenticated,
-    error
+    error,
   }
 }
 
 function mapDispatch(dispatch) {
   return {
-    actions: bindActionCreators(Actions.userAction, dispatch)
+    actions: bindActionCreators(Actions.userAction, dispatch),
   }
 }
 

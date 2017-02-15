@@ -1,18 +1,18 @@
 /*eslint no-undef: 0*/
 
-import { getStorageItem, setStorageItem, removeStorageItem } from './storage';
+import { getStorageItem, setStorageItem, removeStorageItem } from './storage'
 
-import { isUndefined, isEmpty } from 'lodash';
+import { isUndefined } from 'lodash'
 
 const _OAUTH_CLIENT_ID = ''
 const _OAUTH_CLIENT_SECRET = ''
 
 if (isUndefined(_OAUTH_CLIENT_ID)) {
-  throw new Error('OAUTH_CLIENT_ID must be set.');
+  throw new Error('OAUTH_CLIENT_ID must be set.')
 }
 
 if (isUndefined(_OAUTH_CLIENT_SECRET)) {
-  throw new Error('OAUTH_CLIENT_SECRET must be set.');
+  throw new Error('OAUTH_CLIENT_SECRET must be set.')
 }
 
 /**
@@ -22,7 +22,7 @@ if (isUndefined(_OAUTH_CLIENT_SECRET)) {
  */
 export function requireAuth(nextState, replace) {
   if (!getIsAuthenticated()) {
-    replace('sign-in');
+    replace('sign-in')
   }
 }
 
@@ -33,7 +33,7 @@ export function requireAuth(nextState, replace) {
  */
 export function requireGuest(nextState, replace) {
   if (getIsAuthenticated()) {
-    replace('/');
+    replace('/')
   }
 }
 
@@ -42,7 +42,7 @@ export function requireGuest(nextState, replace) {
  * @param {Object} session
  */
 export function setSession(session) {
-  setStorageItem('auth_session', session);
+  setStorageItem('auth_session', session)
 }
 
 /**
@@ -50,35 +50,35 @@ export function setSession(session) {
  * @param {Object} user
  */
 export function setUser(user) {
-  setStorageItem('auth_user', user);
+  setStorageItem('auth_user', user)
 }
 /**
  *
  * @returns {Object}
  */
 export function getSession() {
-  return getStorageItem('auth_session');
+  return getStorageItem('auth_session')
 }
 /**
  *
  * @returns {Object}
  */
 export function getUser() {
-  return getStorageItem('auth_user');
+  return getStorageItem('auth_user')
 }
 
 /**
  *
  */
 export function removeSession() {
-  removeStorageItem('auth_session');
+  removeStorageItem('auth_session')
 }
 
 /**
  *
  */
 export function removeUser() {
-  removeStorageItem('auth_user');
+  removeStorageItem('auth_user')
 }
 
 /**
@@ -86,7 +86,7 @@ export function removeUser() {
  * @returns {boolean}
  */
 export function getIsAuthenticated() {
-  return Boolean(getAccessToken());
+  return Boolean(getAccessToken())
 }
 
 /**
@@ -94,7 +94,7 @@ export function getIsAuthenticated() {
  * @returns {string|null}
  */
 export function getAccessToken() {
-  return getStorageItem('auth_session.access_token');
+  return getStorageItem('auth_session.access_token')
 }
 
 /**
@@ -102,5 +102,5 @@ export function getAccessToken() {
  * @returns {string|null}
  */
 export function getRefreshToken() {
-  return getStorageItem('auth_session.refresh_token');
+  return getStorageItem('auth_session.refresh_token')
 }

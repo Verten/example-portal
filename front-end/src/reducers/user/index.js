@@ -11,7 +11,7 @@ const initialState = Immutable.fromJS({
   user: getUser(),
   isAuthenticated: getIsAuthenticated(),
   isProcessing: false,
-  error: null
+  error: null,
 })
 
 function userReducer(state = initialState, action) {
@@ -27,7 +27,7 @@ function userReducer(state = initialState, action) {
       return state.merge({
         data: Immutable.fromJS(data),
         isProcessing: false,
-        error: null
+        error: null,
       })
     },
     USER_AUTHENTICATE: () => {
@@ -38,7 +38,7 @@ function userReducer(state = initialState, action) {
         data: Immutable.fromJS(data),
         isAuthenticated: true,
         isProcessing: false,
-        error: null
+        error: null,
       })
     },
     USER_ERROR: () => {
@@ -48,7 +48,7 @@ function userReducer(state = initialState, action) {
         error: Immutable.fromJS(error),
         isProcessing: false,
       })
-    }
+    },
   }
   if (operation[action.type]) {
     return operation[action.type]()

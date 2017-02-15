@@ -12,6 +12,7 @@ module.exports = {
       .setValue('input#identifier','admin')
       .setValue('input#password','123456')
       .click('button#iam-login-button')
+      .assert.containsText('div.login-message-wrapper > div', '404') // back end is not ready, so it return 404
       .pause(2000)
       .end();
   }

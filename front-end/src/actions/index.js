@@ -4,7 +4,7 @@
 import * as userAction from './user'
 
 const actions = {
-  userAction
+  userAction,
 }
 
 export default actions

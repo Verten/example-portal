@@ -1,13 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { isNull } from 'lodash'
+// import { isNull } from 'lodash'
 import LoginPanel from '../components/LoginComponent'
 import Actions from '../actions'
 import { debug } from '../utilities/log'
 
 export class LoginPage extends React.Component {
-  static propTypes = {}
+  static propTypes = {
+    actions: React.PropTypes.object.isRequired,
+    error: React.PropTypes.object,
+  }
 
   static defaultProps = {}
 
@@ -31,7 +34,7 @@ export class LoginPage extends React.Component {
   render() {
     const { actions, error } = this.props
     return (
-      <div id="app">
+      <div id='app'>
         <LoginPanel {...actions} error={error}/>
       </div>
     )
@@ -42,13 +45,13 @@ function mapStateToProps(state) {
   const { userReducer } = state
   const { user, isAuthenticated, isProcessing, error } = userReducer.toJS()
   return {
-    user, isAuthenticated, isProcessing, error
+    user, isAuthenticated, isProcessing, error,
   }
 }
 
 function mapDispatch(dispatch) {
   return {
-    actions: bindActionCreators(Actions.userAction, dispatch)
+    actions: bindActionCreators(Actions.userAction, dispatch),
   }
 }
 
